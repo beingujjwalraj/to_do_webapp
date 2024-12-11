@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Tasks</title>
+    <!-- Link to CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/manage.css') }}">
+</head>
+<body>
+    <!-- Starry Background -->
+    <div id="starry-background"></div>
+
+    <div class="container">
+        <h1>Manage Your Tasks</h1>
+
+        <!-- Task Form -->
+        <form method="POST" action="{{ url_for('manage_tasks') }}" class="task-form">
+            <div class="form-group">
+                <label for="task">Task:</label>
+                <input type="text" id="task" name="task" required>
+            </div>
+            <div class="form-group">
+                <label for="time">Time:</label>
+                <input type="time" id="time" name="time" required>
+            </div>
+            <div class="form-group checkbox">
+                <label for="done">Done:</label>
+                <input type="checkbox" id="done" name="done">
+            </div>
+            <button type="submit" class="btn">Add Task</button>
+        </form>
+
+        <!-- Task Table -->
+        <div class="task-table-wrapper">
+            <table class="task-table">
+                <thead>
+                    <tr>
+                        <th>Task</th>
+                        <th>Time</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for task in tasks %}
+                    <tr>
+                        <td>{{ task.task }}</td>
+                        <td>{{ task.time }}</td>
+                        <td>{{ 'Done' if task.done else 'Not Done' }}</td>
+                        <td>
+                            <a href="{{ url_for('delete_task', task_id=task.id) }}" class="btn danger">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="actions">
+            <a href="{{ url_for('report') }}" class="btn">Check Report</a>
+        </div>
+    </div>
+
+    <!-- Link to JavaScript -->
+    <script src="{{ url_for('static', filename='js/manage.js') }}"></script>
+</body>
+</html>

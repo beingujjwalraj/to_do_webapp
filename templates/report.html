@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Report</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/report.css') }}">
+</head>
+<body>
+    <div id="starry-background"></div>
+    <div class="container">
+        <h1>Task Report</h1>
+
+        <div class="report-content">
+            <div class="tasks-section">
+                <h2>Completed Tasks</h2>
+                <ul class="task-list">
+                    {% for task in completed %}
+                    <li>
+                        <span class="task-name">{{ task.task }}</span>
+                        <span class="task-time">({{ task.time }})</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="tasks-section">
+                <h2>Not Completed Tasks</h2>
+                <ul class="task-list">
+                    {% for task in not_completed %}
+                    <li>
+                        <span class="task-name">{{ task.task }}</span>
+                        <span class="task-time">({{ task.time }})</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="buttons">
+            <a href="{{ url_for('home') }}" class="btn">Back to Home</a>
+            <a href="{{ url_for('generate_pdf') }}" class="btn">Generate PDF</a>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/report.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do App</title>
+    <!-- Link to CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <!-- Starry Background -->
+    <div id="starry-background"></div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <h1>Welcome to the To-Do App</h1>
+        <p>Organize your tasks efficiently and effortlessly.</p>
+        <div class="buttons">
+            <a href="{{ url_for('manage_tasks') }}" class="btn">Create Tasks</a>
+            <a href="{{ url_for('report') }}" class="btn">Check Report</a>
+        </div>
+    </div>
+
+    <!-- Link to JavaScript -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
